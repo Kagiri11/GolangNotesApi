@@ -29,3 +29,7 @@ func (u *User) UpdateUser() (*User, error) {
 func (u *User) DeleteUser() error {
 	return nil
 }
+
+func (u *User) LoginUser() error {
+	return nil
+}
