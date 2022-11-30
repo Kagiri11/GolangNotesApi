@@ -3,11 +3,11 @@ package models
 import "time"
 
 type User struct {
-	ID        int
-	Name      string
-	Password  string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	ID        int       `gorm:"primary_key;auto_increment" json:"id"`
+	Name      string    `gorm:"size:255;not null" json:"name"`
+	Password  string    `gorm:"size:100;not null" json:"password"`
+	CreatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"created_at"`
+	UpdatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
 }
 
 func (u *User) CreateUser() (*User, error) {

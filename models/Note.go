@@ -1,16 +1,19 @@
 package models
 
-import "time"
+import (
+	"gorm.io/gorm"
+	"time"
+)
 
 type Note struct {
-	ID          int32
-	Title       string
-	Description string
-	CreatedAt   time.Time
-	UpdatedAt   time.Time
+	ID          int32     `gorm:"primary_key;auto_increment" json:"id"`
+	Title       string    `gorm:"size:100;not null" json:"title"`
+	Description string    `gorm:"size:255;not null" json:"description"`
+	CreatedAt   time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"created_at"`
+	UpdatedAt   time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
 }
 
-func (n *Note) CreateNote() (*Note, error) {
+func (n *Note) CreateNote(db *gorm.DB) (*Note, error) {
 	return nil, nil
 }
 
