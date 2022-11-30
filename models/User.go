@@ -21,19 +21,32 @@ func (u *User) CreateUser(db *gorm.DB) (*User, error) {
 	return u, nil
 }
 
-func (u *User) GetUser() (*User, error) {
-	return nil, nil
+func (u *User) GetUser(db *gorm.DB, id int) (*User, error) {
+	err := db.Debug().Model(&User{}).Where("id = ?", id).Take(&u).Error
+	if err != nil {
+		return &User{}, err
+	}
+	return u, nil
 }
 
-func (u *User) GetUsers() (*[]User, error) {
-	return nil, nil
+func (u *User) GetUsers(db *gorm.DB) (*[]User, error) {
+	users := []User{}
+	err := db.Debug().Model(&User{}).Limit(100).Find(&users).Error
+	if err != nil {
+		return &[]User{}, err
+	}
+	return &users, nil
 }
 
 func (u *User) UpdateUser() (*User, error) {
 	return nil, nil
 }
 
-func (u *User) DeleteUser() error {
+func (u *User) DeleteUser(db *gorm.DB, id int) error {
+	err := db.Debug().Delete(&u).Where("id = ?", id).Error
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
