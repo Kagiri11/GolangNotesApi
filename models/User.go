@@ -9,3 +9,23 @@ type User struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
+
+func (u *User) CreateUser() (*User, error) {
+	return nil, nil
+}
+
+func (u *User) GetUser() (*User, error) {
+	return nil, nil
+}
+
+func (u *User) GetUsers() (*[]User, error) {
+	return nil, nil
+}
+
+func (u *User) UpdateUser() (*User, error) {
+	return nil, nil
+}
+
+func (u *User) DeleteUser() error {
+	return nil
+}
