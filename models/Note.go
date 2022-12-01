@@ -14,21 +14,38 @@ type Note struct {
 }
 
 func (n *Note) CreateNote(db *gorm.DB) (*Note, error) {
+	err := db.Debug().Model(&Note{}).Create(&n).Error
+	if err != nil {
+		return &Note{}, err
+	}
+	return n, nil
+}
+
+func (n *Note) GetNote(db *gorm.DB, noteId int) (*Note, error) {
+	err := db.Debug().Find(&Note{}).Where("id = ?").Take(&n).Error
+	if err != nil {
+		return &Note{}, err
+	}
+	return n, nil
+}
+
+func (n *Note) GetNotes(db *gorm.DB) (*[]Note, error) {
+	var notes []Note
+	err := db.Debug().Model(&Note{}).Limit(100).Find(&notes).Error
+	if err != nil {
+		return &[]Note{}, err
+	}
+	return &notes, nil
+}
+
+func (n *Note) UpdateNote(db *gorm.DB) (*Note, error) {
 	return nil, nil
 }
 
-func (n *Note) GetNote() (*Note, error) {
-	return nil, nil
-}
-
-func (n *Note) GetNotes() (*[]Note, error) {
-	return nil, nil
-}
-
-func (n *Note) UpdateNote() (*Note, error) {
-	return nil, nil
-}
-
-func (n *Note) DeleteNote() error {
+func (n *Note) DeleteNote(db *gorm.DB, noteId int) error {
+	err := db.Debug().Where("id = ?", noteId).Delete(&n).Error
+	if err != nil {
+		return err
+	}
 	return nil
 }
