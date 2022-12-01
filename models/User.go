@@ -43,7 +43,7 @@ func (u *User) UpdateUser() (*User, error) {
 }
 
 func (u *User) DeleteUser(db *gorm.DB, id int) error {
-	err := db.Debug().Delete(&u).Where("id = ?", id).Error
+	err := db.Debug().Where("id = ?", id).Delete(&u).Error
 	if err != nil {
 		return err
 	}

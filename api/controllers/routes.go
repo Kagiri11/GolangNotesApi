@@ -9,5 +9,6 @@ func (s *Server) InitializeRoutes() {
 	s.Router.Handle("/user", middlewares.SetJSONMiddleware(s.SignUpUser)).Methods("POST")
 	s.Router.Handle("/user/{id}", middlewares.SetJSONMiddleware(s.GetUser)).Methods("GET")
 	s.Router.Handle("/users", middlewares.SetJSONMiddleware(s.GetUsers)).Methods("GET")
-	
+	s.Router.Handle("/user/{id}", middlewares.SetJSONMiddleware(s.DeleteUser)).Methods("DELETE")
+
 }
