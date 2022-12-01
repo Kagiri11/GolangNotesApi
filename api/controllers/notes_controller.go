@@ -1,6 +1,8 @@
 package controllers
 
-import "net/http"
+import (
+	"net/http"
+)
 
 func (s *Server) CreateNote(w http.ResponseWriter, r *http.Request) {
 
