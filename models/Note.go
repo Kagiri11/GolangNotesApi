@@ -22,7 +22,7 @@ func (n *Note) CreateNote(db *gorm.DB) (*Note, error) {
 }
 
 func (n *Note) GetNote(db *gorm.DB, noteId int) (*Note, error) {
-	err := db.Debug().Find(&Note{}).Where("id = ?").Take(&n).Error
+	err := db.Debug().Find(&Note{}).Where("id = ?", noteId).Take(&n).Error
 	if err != nil {
 		return &Note{}, err
 	}
