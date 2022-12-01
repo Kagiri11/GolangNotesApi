@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"io/ioutil"
-	"kagiri/GolangNotesApi/controllers/responses"
+	"kagiri/GolangNotesApi/api/controllers/responses"
 	"kagiri/GolangNotesApi/models"
 	"net/http"
 )
@@ -22,7 +22,7 @@ func (s *Server) SignUpUser(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}
-	// save that struct to db
+	// save that user to db
 	createdUser, err := user.CreateUser(s.DB)
 	if err != nil {
 		responses.ERROR(w, http.StatusForbidden, err)
@@ -41,7 +41,7 @@ func (s *Server) GetUser(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func (s *Server) GetUsers(w http.Request, r *http.Request) {
+func (s *Server) GetUsers(w http.ResponseWriter, r *http.Request) {
 
 }
 
