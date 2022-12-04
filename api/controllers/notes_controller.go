@@ -50,8 +50,14 @@ func (s *Server) GetNote(w http.ResponseWriter, r *http.Request) {
 	responses.JSONThis(w, http.StatusFound, noteFromDB)
 }
 
-func (s *Server) GetNotes(w http.Request, r *http.Request) {
-
+func (s *Server) GetNotes(w http.ResponseWriter, r *http.Request) {
+	note := models.Note{}
+	gottenNotes, err := note.GetNotes(s.DB)
+	if err != nil {
+		responses.ERROR(w, http.StatusNotFound, err)
+		return
+	}
+	responses.JSONThis(w, http.StatusFound, gottenNotes)
 }
 
 func (s *Server) UpdateNote(w http.ResponseWriter, r *http.Request) {
