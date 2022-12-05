@@ -15,5 +15,5 @@ func (s *Server) InitializeRoutes() {
 	s.Router.Handle("/note", middlewares.SetJSONMiddleware(s.CreateNote)).Methods("POST")
 	s.Router.Handle("/note/{id}", middlewares.SetJSONMiddleware(s.GetNote)).Methods("GET")
 	s.Router.Handle("/notes", middlewares.SetJSONMiddleware(s.GetNotes)).Methods("GET")
-
+	s.Router.Handle("/note/{id}", middlewares.SetJSONMiddleware(s.DeleteNote)).Methods("DELETE")
 }

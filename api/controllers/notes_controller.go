@@ -65,5 +65,17 @@ func (s *Server) UpdateNote(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) DeleteNote(w http.ResponseWriter, r *http.Request) {
-
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+	note := models.Note{}
+	err = note.DeleteNote(s.DB, id)
+	if err != nil {
+		responses.ERROR(w, http.StatusNotFound, err)
+		return
+	}
+	responses.JSONThis(w, http.StatusOK, "note has been deleted")
 }
