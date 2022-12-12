@@ -3,9 +3,9 @@
 A simple application to manage notes.
 # Contents
     1. Architecture.
-    2. Hosting.
+    2. Pagination.
     3. Testing.
-    4. Pagination.
-    5. Tools
+    4. Tools.
+    5. Hosting.
 # Architecture
 # Tools
